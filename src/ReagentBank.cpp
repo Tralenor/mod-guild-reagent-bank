@@ -209,8 +209,8 @@ private:
 
         if (totalDeposited > 0) {
             CharacterDatabase.CommitTransaction(trans);
-            auto message = std::format("Es wurden {} Handwerksmaterialien erfolgreich eingelagert.",totalDeposited);
-            ChatHandler(player->GetSession()).PSendSysMessage(message);
+            auto message_stream = std::stringstream{"Es wurden"} << totalDeposited << "Handwerksmaterialien erfolgreich eingelagert.";
+            ChatHandler(player->GetSession()).PSendSysMessage(message_stream.str());
         } else {
             ChatHandler(player->GetSession()).PSendSysMessage("Es war kein Platz im Lager verfügbar.");
         }
